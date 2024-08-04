@@ -79,6 +79,46 @@ class MainFragment : PreferenceFragmentCompat() {
 //                ".app.settings.GoogleSettingsActivity")
         }
         PreferenceCategory(ctx).apply {
+            title = getString(R.string.work_profile)
+            screen.addPreference(this)
+
+            SwitchPreferenceCompat(ctx).apply {
+                title = getString(R.string.clone_play_services_work_profile)
+                isSingleLineTitle = false
+                isChecked = true // BinderDefs.isEnabled(BinderDefGroup.LOCATION)
+                setOnPreferenceChangeListener { _, value ->
+                    val installPlayEnabled = value as Boolean
+                    // BinderDefs.setEnabled(BinderDefGroup.LOCATION, redirectionEnabled)
+
+                    /* var msg: String? = null
+                    if (redirectionEnabled) {
+                        // other location modes imply this one
+                        if (gmsCoreHasPermission(permission.ACCESS_COARSE_LOCATION)) {
+                            msg = getString(R.string.revoke_location_permission)
+                        }
+                    } else {
+                        if (!gmsCoreHasFullLocationPermission()) {
+                            msg = getString(R.string.play_services_no_location_permission, ctx.packageManager.backgroundPermissionOptionLabel)
+                        }
+                    }
+                    if (msg != null) {
+                        AlertDialog.Builder(ctx).apply {
+                            setMessage(msg)
+                            setPositiveButton(R.string.play_services_settings) { _, _ ->
+                                startFreshActivity(appSettingsIntent(PACKAGE_GMS_CORE))
+                            }
+                            show()
+                        }
+                    }
+                    updatePotentialIssues() */
+                    true
+                }
+                addPreference(this)
+            }
+
+            screen.addPreference(this)
+        }
+        PreferenceCategory(ctx).apply {
             title = getString(R.string.geolocation)
             screen.addPreference(this)
 
