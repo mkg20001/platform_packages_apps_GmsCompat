@@ -534,4 +534,8 @@ object BinderGms2Gca : IGms2Gca.Stub() {
             show(notifId)
         }
     }
+
+    override fun setupWorkProfileGms(workUser: Int, callingUser: Int, adminPkgs: Array<String>): Boolean {
+        return false
+    }
 }
