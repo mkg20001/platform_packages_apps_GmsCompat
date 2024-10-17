@@ -32,6 +32,14 @@
         android:name="com.google.android.c2dm.permission.RECEIVE"
         android:protectionLevel="normal" />
 
+    <!-- This permission is declared in GSF on regular Android. It was moved to GmsCompat app to
+    avoid the need to install GSF, which misbehaves on SDK 35+ due to signature mismatch between
+    itself and GmsCore (GSF and GmsCore use a sharedUid on regular Android) -->
+    <permission
+        android:name="com.google.android.c2dm.permission.SEND"
+        android:knownCerts="@array/gmscore_known_signers"
+        android:protectionLevel="internal|knownSigner" />
+
     <application
         android:name=".App"
         android:label="@string/app_name"
